@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Адмінка</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Панель адміністратора</h1>
+    <nav><a href="index.html">На головну</a></nav>
+  </header>
+  <main>
+    <section>
+      <h2>Оновлення інформації</h2>
+      <label for="info">Про нас:</label><br>
+      <textarea id="info" rows="4" cols="50"></textarea><br>
+      <label for="contacts">Контакти:</label><br>
+      <textarea id="contacts" rows="4" cols="50"></textarea><br>
+      <label for="gallery">Галерея (посилання через кому):</label><br>
+      <textarea id="gallery" rows="2" cols="50"></textarea><br><br>
+      <button onclick="save()">Зберегти</button>
+    </section>
+  </main>
+  <footer>
+    <p>&copy; 2025 3 Ремонтна Рота</p>
+  </footer>
+  <script>
+    function save() {
+      localStorage.setItem('info', document.getElementById('info').value);
+      localStorage.setItem('contacts', document.getElementById('contacts').value);
+      const galleryUrls = document.getElementById('gallery').value.split(',').map(s => s.trim());
+      localStorage.setItem('gallery', JSON.stringify(galleryUrls));
+      alert('Дані збережено. Перезавантажте головну сторінку.');
+    }
+  </script>
+</body>
+</html>

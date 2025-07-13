@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>3 Ремонтна Рота</title>
+  <meta name="description" content="3 Ремонтна Рота ЗСУ — технічне обслуговування та ремонт озброєння.">
+  <meta name="keywords" content="ЗСУ, ремонтна рота, військова техніка, обслуговування, техніка">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>3 Ремонтна Рота</h1>
+    <nav>
+      <a href="#info">Про нас</a>
+      <a href="#gallery">Фото</a>
+      <a href="#contacts">Контакти</a>
+      <a href="admin.html">Адмінка</a>
+    </nav>
+  </header>
+  <main>
+    <section id="info">
+      <h2>Про підрозділ</h2>
+      <div id="info-content">Ми — 3 ремонтна рота, спеціалізуємось на технічному обслуговуванні та ремонті озброєння та військової техніки Збройних Сил України.</div>
+    </section>
+    <section id="gallery">
+      <h2>Галерея</h2>
+      <div id="gallery-content">
+        <img src="img/photo1.jpg" alt="Фото 1">
+        <img src="img/photo2.jpg" alt="Фото 2">
+      </div>
+    </section>
+    <section id="contacts">
+      <h2>Контакти</h2>
+      <div id="contacts-content">
+        <p>Email: remontrota3@army.ua</p>
+        <p>Телефон: +380 00 000 0000</p>
+      </div>
+    </section>
+  </main>
+  <footer>
+    <p>&copy; 2025 3 Ремонтна Рота | Слава Україні!</p>
+  </footer>
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      if(localStorage.getItem('info')) {
+        document.getElementById('info-content').innerText = localStorage.getItem('info');
+      }
+      if(localStorage.getItem('contacts')) {
+        document.getElementById('contacts-content').innerText = localStorage.getItem('contacts');
+      }
+      const data = localStorage.getItem('gallery');
+      if (data) {
+        try {
+          const urls = JSON.parse(data);
+          const gallery = document.getElementById('gallery-content');
+          gallery.innerHTML = '';
+          urls.forEach(url => {
+            const img = document.createElement('img');
+            img.src = url;
+            img.alt = 'Фото з галереї';
+            gallery.appendChild(img);
+          });
+        } catch (e) {
+          console.error("Помилка при завантаженні галереї:", e);
+        }
+      }
+    });
+  </script>
+</body>
+</html>
